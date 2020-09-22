@@ -1,0 +1,86 @@
+-29/06/2006 -3.0.1
+
+-- Fixed a variable problem in the browsfolder function (wrote browse instead of browsefolder). Thanks Roja Gilchrist
+-- Fixed a minor bug in the progress bar code. The number of files was not getting rest when the code ran, therefore if you decompressed more than 1 archive, the progress bar would start half way up
+-- Fixed comments not being displayed when a file was droppped or opened from the OS. Moved the comment code to the listfiles section, rather than the reset section (don't know what I was thinking)
+
+-27/06/2006 - 3.0
+-- Can drag an archive on the exe and it will auto enter it into the OpenRar text bo and list the files (i.e. allows archives to be opened by double clicking on it if there is no rar support available. Just select "open with")
+-- Implemented another progressbar so that the user knows how many objects have been extracted and how many to go
+-- Got rid of the label showing number of files in the archive
+-- Sorted out the multi Volume archives so that the unpacked size doesn't get counted twice, therefore the progressbar is more reliable
+-- Realised that WinRar doesn't tidy up the folders (i.e TopLevel shown by default until it is double clicked, which shows the second level files relative to the toplevel folder)
+-- Tidied up some of the listing coding so that there are not two procedures to list files and folders separately, now there is just one (which may have caused the confusion with the treeview)
+-- Scrapped the treeview as it was a stupid idea. Replaced it with a Listview which can show the file properties and cuts down on the extra part of the extraction function
+-- Display archive Comments
+-- Removed API of the List box so that it is scrollable as the Listbox has been removed
+-- Changed borderstyle of form from Fixed single to sizable and allows controls to be resized as well (though it flashes the form when it reaches its limit)
+-- Changed GUI so that a toolbar is used (may as well use the other items in MSCOMCTRL.OCX since its referenced), and got rid of the list files option. Its automatic now
+-- List files doesn't list the files in the archive twice
+-- Added ability to drop a rar archive on the input textbox
+-- Fixed the process dialog so that long paths get wrapped
+-- Implememented a treeview instead of listbox for files in the archive (though needs tweaking)
+___________________________________________________
+-13/04/2006 - 2.2
+
+
+--Used Doevents so that it doesn't crash on large archives
+--got rid of "May crash" dialog
+--Replaced the Open dialog with proper API
+--Replaced the Extract directory with proper API
+--Got rid of stupid cursor icon when de-raring
+--got rid of some redundant DIMs and used the original value instead
+--got rid of redundant code from replacing the dirbox and open box
+--Progress shows which file/folder is being extracted instead of a number
+--removed grammar checks and replaced with generic file(s) or folder(s)
+--Can Stop extracting prematurely
+--Put Source and output on same form
+--Put list in its own form
+--Made progress form
+
+__________________________________________________________
+
+- 6/11/2005 - 2.1
+
+-- uses bitwise logic instead of converting to binary, masking, then converting back.
+-- detect unexpected end of archive
+-- summary of files extracted altered, so you can see how many files were extracted before an error
+-- detect if nothing has been extracted e.g. if an incorrect password is given
+-- detect number of files and folders
+-- removed "number of files" code as most of it is repeated in list code, and list code can be altered to perform same function. Improves efficiency
+-- User cannot proceed to unrar if file is corrupt
+-- can detect if the "show only rar archive" function has been bypassed
+-- removed the "archive has password" option and replaced it with automatic enabling of password entry field
+-- progressbar implemented properly (it may seem to hang when a large file is being unrared also split archives bit tempremental)
+-- shows which file is being processed
+-- Passworded archive wont get to extract unless a password is supplied
+-- common dialog box used to select source archive (output archive doesn't have common directory box as I don't understand the code req'd)
+-- updated error messages
+-- detect if unrar.dll file is present. If it isn't a proper error is thrown up
+-- optimised a bit of coding
+___________________________________________________________
+
+26/10/2005 - 2.0
+
+
+-- *Experimental* progressbar added. Mostly works, but some archives it just goes to 100% and on some (esp split and password) it only goes part way before stopping, possibly becuase of using the smallest size (packed or unpacked) and using archive length as baseline
+-- moved code around to make it more logical, e.g. put extraction code in a module where it is more accessible
+-- updated file credits
+-- Corrected label on output form
+-- List files in the archive
+-- Give file details e.g. filetime CRC, packed and unpacked size
+-- Distinguish between a file and a folder
+-- Handle passworded archives better
+-- Password now entered on first page for Encrypted filename archives
+-- Warns user of corrupt archive
+
+____________________________________________________________
+
+22/10/2005 - 1.5
+
+-- added "fancy" icon to display as mouse cursor when DeRaring
+-- single click to select a folder
+-- fixed memory leak
+____________________________________________________________
+
+13/10/2005 - Initial Release 1.0
